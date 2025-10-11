@@ -18,13 +18,13 @@ Designed to showcase the professional work of a **Full Stack Software Engineer &
 
 ## 🚀 Tech Stack
 
-- ⚛ **React 18 + TypeScript** — Scalable, component-based architecture.  
-- ⚡ **Vite** — Ultra-fast bundler with Hot Module Replacement (HMR).  
-- 🎨 **Tailwind CSS** — Utility-first styling with glassmorphism and gradient effects.  
-- 🌈 **Framer Motion** — Seamless animations and scroll-based interactions.  
-- 🔗 **Lucide React Icons** — Clean, consistent iconography.  
-- 📱 **PWA Ready** — Installable and works offline.  
-- 🧠 **SEO Optimized** — Metadata, Open Graph, and Twitter card integration.  
+- ⚛ **React 18 + TypeScript** — Scalable, component-based architecture.
+- ⚡ **Vite** — Ultra-fast bundler with Hot Module Replacement (HMR).
+- 🎨 **Tailwind CSS** — Utility-first styling with glassmorphism and gradient effects.
+- 🌈 **Framer Motion** — Seamless animations and scroll-based interactions.
+- 🔗 **Lucide React Icons** — Clean, consistent iconography.
+- 📱 **PWA Ready** — Installable and works offline.
+- 🧠 **SEO Optimized** — Metadata, Open Graph, and Twitter card integration.
 
 ---
 
@@ -147,12 +147,12 @@ Then connect the GitHub repository to Netlify, set the build command to `npm run
 
 ## 🔥 Key Features
 
-- 🌐 Sleek, responsive UI/UX  
-- ✨ Glassmorphism and gradient design aesthetics  
-- 💫 Smooth animations and transitions  
-- 📱 Progressive Web App (offline-ready + installable)  
-- 🔍 Built-in SEO and Open Graph optimization  
-- 🧩 Scalable and modular architecture  
+- 🌐 Sleek, responsive UI/UX
+- ✨ Glassmorphism and gradient design aesthetics
+- 💫 Smooth animations and transitions
+- 📱 Progressive Web App (offline-ready + installable)
+- 🔍 Built-in SEO and Open Graph optimization
+- 🧩 Scalable and modular architecture
 
 ---
 
@@ -173,6 +173,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 💭 Final Note
 
-> *“Good code is poetry in logic — structured, efficient, and beautiful.”*  
->  
+> _“Good code is poetry in logic — structured, efficient, and beautiful.”_
+>
 > This portfolio bridges creativity and technology — a living example of what happens when engineering meets design with intent and precision.
