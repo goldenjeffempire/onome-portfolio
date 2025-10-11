@@ -1,0 +1,6 @@
+# Allow all search engines to index the website
+User-agent: *
+Allow: /
+
+# Sitemap (you’ll add this once your site is live)
+# Sitemap: https://onome.dev/sitemap.xml
