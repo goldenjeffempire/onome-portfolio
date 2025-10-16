@@ -66,6 +66,14 @@ button {
 img {
   max-width: 100%;
   height: auto;
+  loading: lazy;
+  decoding: async;
+}
+
+/* Content visibility for performance */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 /* Prevent layout shift */

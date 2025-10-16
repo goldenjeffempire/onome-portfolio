@@ -29,6 +29,8 @@ const About = () => {
                 src="/profile.jpg"
                 alt="Jeffery Onome Emuodafevware"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500"
+                loading="eager"
+                decoding="async"
               />
             </div>
           </motion.div>
@@ -41,17 +43,21 @@ const About = () => {
             className="space-y-6"
           >
             <p className="text-gray-300 text-lg leading-relaxed">
-              I'm <span className="font-semibold text-sky-400">Jeffery Onome Emuodafevware</span>, a
-              passionate <span className="text-sky-400">Full Stack Software Engineer</span> and{" "}
-              <span className="text-purple-400">AI/ML Expert</span> driven by a deep love for building
-              intelligent, scalable, and user-centric digital experiences.
+              I'm <span className="font-semibold text-sky-400">Jeffery Onome Emuodafevware</span>, a 
+              results-driven <span className="text-sky-400">Software Engineer</span> with <span className="text-purple-400">3 years' experience</span> in 
+              backend, frontend, and AI/ML development.
             </p>
 
             <p className="text-gray-400 leading-relaxed">
-              I bridge creativity and engineering — crafting interfaces that <span className="text-sky-400 italic">feel good</span> while
-              performing flawlessly under the hood. Whether it's deploying a model to production or
-              architecting a full-stack system from scratch, I bring the same energy: elegance,
-              precision, and purpose.
+              Currently the <span className="text-sky-400 font-semibold">Founder of OnomeLabs Technologies</span>, I'm building{" "}
+              <span className="text-purple-400 italic">Echoverse</span>, an AI-powered platform integrating automation and machine learning. 
+              My passion lies in turning innovative ideas into impactful, real-world solutions.
+            </p>
+
+            <p className="text-gray-400 leading-relaxed">
+              Skilled in building scalable systems, deploying machine learning models, and leading product development. 
+              I specialize in full-stack architecture, AI pipelines using TensorFlow & PyTorch, and driving product vision 
+              from concept to deployment.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
@@ -61,7 +67,7 @@ const About = () => {
               >
                 <Code2 className="w-8 h-8 mx-auto mb-2 text-sky-400" />
                 <h3 className="font-semibold text-white">Clean Code</h3>
-                <p className="text-xs text-gray-400">Elegant & Maintainable</p>
+                <p className="text-xs text-gray-400">Scalable & Efficient</p>
               </motion.div>
 
               <motion.div
@@ -78,14 +84,14 @@ const About = () => {
                 className="glass p-4 rounded-xl text-center"
               >
                 <Target className="w-8 h-8 mx-auto mb-2 text-sky-400" />
-                <h3 className="font-semibold text-white">Precision</h3>
-                <p className="text-xs text-gray-400">Detail-Oriented</p>
+                <h3 className="font-semibold text-white">Leadership</h3>
+                <p className="text-xs text-gray-400">Product-Focused</p>
               </motion.div>
             </div>
 
             <p className="text-gray-400 leading-relaxed pt-4">
-              My work philosophy? <span className="font-bold text-sky-400">Build things that last.</span> I'm obsessed with efficiency, obsessed
-              with learning, and always chasing that clean balance between functionality and aesthetics.
+              My work philosophy? <span className="font-bold text-sky-400">Build things that matter.</span> I combine technical excellence 
+              with strategic thinking to deliver solutions that drive real business value.
             </p>
           </motion.div>
         </div>

@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingSplash from "./components/LoadingSplash";
 import Navigation from "./components/Navigation";
 import ScrollProgress from "./components/ScrollProgress";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
+
+const About = lazy(() => import("./components/About"));
+const Stats = lazy(() => import("./components/Stats"));
+const Skills = lazy(() => import("./components/Skills"));
+const Projects = lazy(() => import("./components/Projects"));
+const Experience = lazy(() => import("./components/Experience"));
+const Education = lazy(() => import("./components/Education"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const CTA = lazy(() => import("./components/CTA"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,33 +36,40 @@ function App() {
           <ScrollProgress />
           <Navigation />
 
-          <main className="pt-0">
-            <section id="hero">
+          <main id="main-content" className="pt-0" role="main">
+            <section id="hero" aria-label="Hero section">
               <Hero />
             </section>
-            <section id="about">
-              <About />
-            </section>
-            <section id="skills">
-              <Skills />
-            </section>
-            <section id="projects">
-              <Projects />
-            </section>
-            <section id="experience">
-              <Experience />
-            </section>
-            <section id="education">
-              <Education />
-            </section>
-            <section id="contact">
-              <Contact />
-            </section>
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+              <section id="about" aria-label="About section">
+                <About />
+              </section>
+              <Stats />
+              <section id="skills" aria-label="Skills section">
+                <Skills />
+              </section>
+              <section id="projects" aria-label="Projects section">
+                <Projects />
+              </section>
+              <section id="experience" aria-label="Experience section">
+                <Experience />
+              </section>
+              <section id="education" aria-label="Education section">
+                <Education />
+              </section>
+              <section id="testimonials" aria-label="Testimonials section">
+                <Testimonials />
+              </section>
+              <CTA />
+              <section id="contact" aria-label="Contact section">
+                <Contact />
+              </section>
+            </Suspense>
           </main>
 
-          <footer className="text-center text-sm text-gray-500 py-10 border-t border-white/10">
-            © {new Date().getFullYear()} Jeffery Onome Emuodafevware. All rights reserved.
-          </footer>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
         </div>
       )}
     </>

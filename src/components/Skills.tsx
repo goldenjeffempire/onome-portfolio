@@ -14,45 +14,52 @@ interface SkillCategory {
 
 const skillsData: SkillCategory[] = [
   {
-    category: "Frontend Development",
-    icon: "🎨",
+    category: "Programming Languages",
+    icon: "💻",
     skills: [
-      { name: "React / Next.js", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 92 },
-      { name: "Framer Motion", level: 88 },
+      { name: "Python", level: 95 },
+      { name: "JavaScript / TypeScript", level: 92 },
+      { name: "C / C++", level: 85 },
     ],
   },
   {
-    category: "Backend Development",
+    category: "Frameworks & Libraries",
     icon: "⚙️",
     skills: [
-      { name: "Node.js / Express", level: 90 },
-      { name: "Python / FastAPI", level: 88 },
-      { name: "PostgreSQL / MongoDB", level: 85 },
-      { name: "REST / GraphQL APIs", level: 90 },
-    ],
-  },
-  {
-    category: "AI/ML Engineering",
-    icon: "🤖",
-    skills: [
+      { name: "Django / Flask", level: 93 },
+      { name: "React / Node.js", level: 90 },
+      { name: "Express.js", level: 88 },
       { name: "TensorFlow / PyTorch", level: 87 },
-      { name: "NLP & LLMs", level: 85 },
-      { name: "Computer Vision", level: 82 },
-      { name: "Model Deployment", level: 88 },
     ],
   },
   {
-    category: "DevOps & Tools",
-    icon: "🛠️",
+    category: "Databases & Tools",
+    icon: "🗄️",
     skills: [
-      { name: "Git / GitHub", level: 95 },
-      { name: "Docker / CI/CD", level: 85 },
-      { name: "AWS / Cloud Services", level: 80 },
-      { name: "Linux / Bash", level: 88 },
+      { name: "PostgreSQL / MySQL", level: 90 },
+      { name: "MongoDB", level: 85 },
+      { name: "Git / Docker", level: 92 },
+      { name: "REST APIs / GraphQL", level: 90 },
     ],
   },
+  {
+    category: "Design & Cloud",
+    icon: "🎨",
+    skills: [
+      { name: "HTML / CSS / Tailwind", level: 95 },
+      { name: "UI/UX Design Systems", level: 88 },
+      { name: "AWS / Nginx", level: 80 },
+    ],
+  },
+];
+
+const softSkills = [
+  "Leadership",
+  "Problem-Solving",
+  "Communication",
+  "Agile Methodology",
+  "Team Collaboration",
+  "Strategic Thinking",
 ];
 
 const Skills = () => {
@@ -71,7 +78,7 @@ const Skills = () => {
           Technical Expertise
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {skillsData.map((category, categoryIndex) => (
             <motion.div
               key={category.category}
@@ -84,7 +91,12 @@ const Skills = () => {
               className="glass p-8 rounded-2xl hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl">{category.icon}</span>
+                <motion.span 
+                  className="text-4xl"
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                >
+                  {category.icon}
+                </motion.span>
                 <h3 className="text-xl font-bold text-sky-400">{category.category}</h3>
               </div>
 
@@ -136,12 +148,37 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="glass p-8 rounded-2xl"
+        >
+          <h3 className="text-xl font-bold text-purple-400 mb-6 text-center">Soft Skills & Competencies</h3>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {softSkills.map((skill, index) => (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="glass px-6 py-3 rounded-full border border-purple-500/30 text-purple-300 font-medium"
+              >
+                {skill}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
           <p className="text-gray-400 text-lg">
-            Constantly learning and exploring new technologies to stay at the cutting edge of innovation
+            Constantly evolving and mastering new technologies to deliver cutting-edge solutions
           </p>
         </motion.div>
       </motion.div>

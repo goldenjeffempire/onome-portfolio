@@ -1,0 +1,79 @@
+Jeffery Onome Emuodafevware
+
+Software Engineer | AI/ML Expert | Full Stack Developer
+
+📍 Lagos, Nigeria | 📱 +234 8052587419 | +234 9017048791
+📧 jeffemuodafe124@gmail.com | 🔗 LinkedIn · GitHub · Twitter(X)
+
+
+---
+
+Profile
+
+Results-driven Software Engineer with 3 years’ experience in backend, frontend, and AI/ML development. Skilled in building scalable systems, deploying machine learning models, and leading product development. Currently founder of OnomeLabs Technologies, developing Echoverse, an AI-powered platform. Passionate about turning innovative ideas into impactful, real-world solutions.
+
+
+---
+
+Core Skills
+
+Languages: Python, JavaScript, TypeScript, C, C++
+Frameworks: Django, Flask, React, Node.js, Express.js, TensorFlow, PyTorch
+Databases: PostgreSQL, MySQL, MongoDB
+Tools: Git, Docker, Nginx, REST APIs, GraphQL, AWS (basic)
+Design: HTML, CSS, Tailwind, UI/UX, Design Systems
+Soft Skills: Leadership, Problem-Solving, Communication, Agile
+
+
+---
+
+Experience
+
+Founder & Lead Engineer – OnomeLabs Technologies (Remote)
+Jan 2025 – Present
+
+Building Echoverse, an AI-powered platform integrating automation & machine learning.
+
+Designed full-stack architecture and AI pipelines using TensorFlow & PyTorch.
+
+Driving product vision, development, and deployment strategies.
+
+
+AI/ML Engineer (Freelance & Independent Projects) (Remote)
+Jan 2024 – Present
+
+Developed ML models for NLP & predictive analytics.
+
+Deployed AI models into production-ready APIs.
+
+Researched generative AI use cases for real-world applications.
+
+
+Lead Backend Developer (Capstone Project – GlobalXchange) – ALX SE Program
+Jun 2024 – Oct 2024
+
+Led backend engineering for a trading platform using Django & PostgreSQL.
+
+Optimized database performance, boosting efficiency by 40%.
+
+Built APIs supporting secure transactions and user features.
+
+
+Backend Software Engineer Intern – ALX SE Program
+Aug 2023 – Oct 2024
+
+Built backend services with Django & REST APIs.
+
+Integrated secure authentication and database management.
+
+
+
+---
+
+Education & Certifications
+
+ALX Software Engineering Program – Backend Development (2023 – 2024)
+Design System University – UI/UX & Frontend Design (2023 – 2024)
+Edx – CS & Software Development Fundamentals (2022 – 2023)
+Certificate: Software Engineering (Backend Specialization), ALX (2024)
+National Comprehensive School, Warri – SSCE (2016)

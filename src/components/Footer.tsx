@@ -1,0 +1,156 @@
+import { motion } from "framer-motion";
+import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from "lucide-react";
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { label: "Home", href: "#hero" },
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+  ];
+
+  const moreLinks = [
+    { label: "Experience", href: "#experience" },
+    { label: "Education", href: "#education" },
+    { label: "Testimonials", href: "#testimonials" },
+    { label: "Contact", href: "#contact" },
+  ];
+
+  const socialLinks = [
+    {
+      icon: <Linkedin size={20} />,
+      href: "https://www.linkedin.com/in/jefferyonome",
+      label: "LinkedIn",
+      color: "hover:text-sky-400 hover:bg-sky-500/20",
+    },
+    {
+      icon: <Github size={20} />,
+      href: "https://github.com/jefferyonome",
+      label: "GitHub",
+      color: "hover:text-purple-400 hover:bg-purple-500/20",
+    },
+    {
+      icon: <Twitter size={20} />,
+      href: "https://twitter.com/jefferyonome",
+      label: "Twitter",
+      color: "hover:text-sky-400 hover:bg-sky-500/20",
+    },
+    {
+      icon: <Mail size={20} />,
+      href: "mailto:jeffemuodafe124@gmail.com",
+      label: "Email",
+      color: "hover:text-purple-400 hover:bg-purple-500/20",
+    },
+  ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer className="relative border-t border-white/10 bg-slate-950/50 backdrop-blur-xl" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="md:col-span-2"
+          >
+            <h3 className="text-2xl font-bold text-gradient mb-4">Jeffery Onome</h3>
+            <p className="text-gray-400 mb-4 max-w-md">
+              Full Stack Software Engineer & AI/ML Expert. Building innovative solutions that make a difference.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`w-10 h-10 glass rounded-lg flex items-center justify-center text-gray-400 transition-all ${social.color}`}
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <motion.a
+                    href={link.href}
+                    whileHover={{ x: 5 }}
+                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block"
+                  >
+                    {link.label}
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4">More</h4>
+            <ul className="space-y-2">
+              {moreLinks.map((link) => (
+                <li key={link.label}>
+                  <motion.a
+                    href={link.href}
+                    whileHover={{ x: 5 }}
+                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block"
+                  >
+                    {link.label}
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm text-center md:text-left">
+            © {currentYear} Jeffery Onome Emuodafevware. All rights reserved.
+          </p>
+          <p className="text-gray-500 text-sm flex items-center gap-1">
+            Built with <Heart size={14} className="text-red-500 fill-red-500" /> using React, TypeScript & Framer Motion
+          </p>
+        </div>
+      </div>
+
+      <motion.button
+        onClick={scrollToTop}
+        whileHover={{ scale: 1.1, backgroundColor: "rgba(14, 165, 233, 0.2)" }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-8 right-8 w-12 h-12 glass rounded-full flex items-center justify-center text-sky-400 hover:text-white transition-colors z-40 border border-sky-500/30"
+        aria-label="Scroll to top"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+      >
+        <ArrowUp size={20} />
+      </motion.button>
+    </footer>
+  );
+};
+
+export default Footer;
