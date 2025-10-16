@@ -21,8 +21,9 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
-    sourcemap: true,
-    chunkSizeWarningLimit: 700,
+    sourcemap: false,
+    minify: "esbuild",
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
         manualChunks: {

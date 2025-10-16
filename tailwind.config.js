@@ -1,58 +1,39 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: "class", // Enables dark mode toggle via 'class' on <html> or <body>
+export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        accent: {
-          DEFAULT: "#3b82f6", // Vibrant blue
-          light: "#60a5fa",
-          dark: "#1e40af",
-        },
-        background: {
-          light: "#f9fafb",
-          dark: "#0f172a",
-        },
-        surface: {
-          light: "#ffffff",
-          dark: "#1e293b",
-        },
-        text: {
-          primary: "#e2e8f0",
-          secondary: "#94a3b8",
-          dark: "#0f172a",
-        },
-      },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        heading: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        heading: ["Poppins", "sans-serif"],
+      },
+      colors: {
+        primary: "#0ea5e9", // sky-500
+        secondary: "#1e293b", // slate-800
+        accent: "#38bdf8", // light blue accent
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       boxShadow: {
-        glow: "0 0 20px rgba(59,130,246,0.4)",
-      },
-      backdropBlur: {
-        xs: "2px",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
-        },
+        glow: "0 0 20px rgba(56, 189, 248, 0.3)",
       },
       animation: {
+        "fade-in": "fadeIn 1.5s ease-out",
         float: "float 6s ease-in-out infinite",
-        fadeIn: "fadeIn 1.5s ease-in-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
+  plugins: [],
 };
