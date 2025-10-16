@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag, User } from "lucide-react";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "../data/expandedBlogPosts";
 
 interface BlogPostProps {
   postId: string;

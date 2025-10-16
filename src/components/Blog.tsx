@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Tag, ChevronRight } from "lucide-react";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "../data/expandedBlogPosts";
 
 interface BlogProps {
   onPostSelect?: (postId: string) => void;

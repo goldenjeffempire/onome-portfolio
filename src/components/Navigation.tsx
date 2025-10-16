@@ -1,29 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      const sections = ["hero", "about", "skills", "projects", "experience", "education", "testimonials", "blog", "contact"];
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -32,23 +19,16 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { href: "#hero", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#experience", label: "Experience" },
-    { href: "#education", label: "Education" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#blog", label: "Blog" },
-    { href: "#contact", label: "Contact" },
+    { href: "/", label: "Home" },
+    { href: "/projects", label: "Projects" },
+    { href: "/experience", label: "Experience" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = () => {
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -64,25 +44,24 @@ const Navigation = () => {
         }`}
       >
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <motion.h1
-            whileHover={{ scale: 1.05 }}
-            className="text-xl md:text-2xl font-bold text-gradient tracking-wide cursor-pointer"
-            onClick={() => handleNavClick("#hero")}
-          >
-            Jeffery Onome
-          </motion.h1>
+          <Link to="/">
+            <motion.h1
+              whileHover={{ scale: 1.05 }}
+              className="text-xl md:text-2xl font-bold text-gradient tracking-wide cursor-pointer"
+              onClick={handleNavClick}
+            >
+              Jeffery Onome
+            </motion.h1>
+          </Link>
 
           <ul className="hidden md:flex gap-2 text-sm">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const isActive = location.pathname === item.href;
               return (
                 <motion.li key={item.href} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.href);
-                    }}
+                  <Link
+                    to={item.href}
+                    onClick={handleNavClick}
                     className={`px-4 py-2 rounded-full transition-all relative group ${
                       isActive
                         ? "bg-sky-500/20 text-sky-400 border border-sky-500/30"
@@ -97,7 +76,7 @@ const Navigation = () => {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
-                  </a>
+                  </Link>
                 </motion.li>
               );
             })}
@@ -125,26 +104,26 @@ const Navigation = () => {
           >
             <div className="flex flex-col pt-24 px-6">
               {navItems.map((item, index) => {
-                const isActive = activeSection === item.href.substring(1);
+                const isActive = location.pathname === item.href;
                 return (
-                  <motion.a
+                  <motion.div
                     key={item.href}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.href);
-                    }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className={`py-4 border-b border-gray-800 transition-all ${
-                      isActive
-                        ? "text-sky-400 font-semibold pl-4 border-l-2 border-sky-400"
-                        : "text-gray-300 hover:text-sky-400 hover:pl-2"
-                    }`}
                   >
-                    {item.label}
-                  </motion.a>
+                    <Link
+                      to={item.href}
+                      onClick={handleNavClick}
+                      className={`block py-4 border-b border-gray-800 transition-all ${
+                        isActive
+                          ? "text-sky-400 font-semibold pl-4 border-l-2 border-sky-400"
+                          : "text-gray-300 hover:text-sky-400 hover:pl-2"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
