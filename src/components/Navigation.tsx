@@ -11,7 +11,7 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ["hero", "about", "skills", "projects", "experience", "education", "testimonials", "contact"];
+      const sections = ["hero", "about", "skills", "projects", "experience", "education", "testimonials", "blog", "contact"];
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       for (const section of sections) {
@@ -39,6 +39,7 @@ const Navigation = () => {
     { href: "#experience", label: "Experience" },
     { href: "#education", label: "Education" },
     { href: "#testimonials", label: "Testimonials" },
+    { href: "#blog", label: "Blog" },
     { href: "#contact", label: "Contact" },
   ];
 

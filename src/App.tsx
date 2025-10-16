@@ -12,12 +12,15 @@ const Projects = lazy(() => import("./components/Projects"));
 const Experience = lazy(() => import("./components/Experience"));
 const Education = lazy(() => import("./components/Education"));
 const Testimonials = lazy(() => import("./components/Testimonials"));
+const Blog = lazy(() => import("./components/Blog"));
+const BlogPost = lazy(() => import("./components/BlogPost"));
 const CTA = lazy(() => import("./components/CTA"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedBlogPost, setSelectedBlogPost] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -61,6 +64,13 @@ function App() {
                 <Testimonials />
               </section>
               <CTA />
+              <section id="blog" aria-label="Blog section">
+                {selectedBlogPost ? (
+                  <BlogPost postId={selectedBlogPost} onBack={() => setSelectedBlogPost(null)} />
+                ) : (
+                  <Blog onPostSelect={(postId) => setSelectedBlogPost(postId)} />
+                )}
+              </section>
               <section id="contact" aria-label="Contact section">
                 <Contact />
               </section>
