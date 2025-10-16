@@ -15,9 +15,14 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
-    open: true,
-    host: true,
+    port: 5000,
+    host: "0.0.0.0",
+    strictPort: true,
+    hmr: {
+      protocol: "wss",
+      host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : "localhost",
+      clientPort: 443,
+    },
   },
   build: {
     outDir: "dist",
