@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap (you’ll add this once your site is live)
-# Sitemap: https://onome.dev/sitemap.xml
+# Sitemap
+Sitemap: https://jefferyonome.dev/sitemap.xml
