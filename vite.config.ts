@@ -20,7 +20,7 @@ export default defineConfig({
     strictPort: true,
     hmr: {
       protocol: "wss",
-      host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : undefined,
+      host: process.env.REPLIT_DOMAINS,
       clientPort: 443,
     },
   },
