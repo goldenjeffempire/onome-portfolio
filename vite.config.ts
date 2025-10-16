@@ -18,7 +18,12 @@ export default defineConfig({
     port: 5000,
     host: "0.0.0.0",
     strictPort: true,
-    hmr: true,
+    allowedHosts: [".repl.co", ".replit.dev", ".replit.app"],
+    hmr: {
+      protocol: "wss",
+      host: undefined,
+      clientPort: 443,
+    },
   },
   build: {
     outDir: "dist",
