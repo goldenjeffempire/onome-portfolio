@@ -24,7 +24,7 @@ export class ProjectController {
     });
   }
 
-  async getFeatured(req: Request, res: Response) {
+  async getFeatured(_req: Request, res: Response) {
     const projects = await prisma.project.findMany({
       where: {
         published: true,

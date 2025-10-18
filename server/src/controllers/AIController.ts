@@ -13,6 +13,7 @@ export class AIController {
 
   constructor() {
     this.aiService = new AIService();
+    this.chat = this.chat.bind(this);
   }
 
   async chat(req: Request, res: Response) {

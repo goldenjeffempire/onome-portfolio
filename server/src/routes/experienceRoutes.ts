@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { asyncHandler } from '../middleware/errorHandler';
 import prisma from '../config/database';
 
 const router = Router();
 
-router.get('/', asyncHandler(async (_req, res) => {
+router.get('/', asyncHandler(async (_req: Request, res: Response) => {
   const experiences = await prisma.experience.findMany({
     orderBy: [{ order: 'asc' }, { startDate: 'desc' }],
   });
@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (_req, res) => {
   });
 }));
 
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id', asyncHandler(async (req: Request, res: Response) => {
   const experience = await prisma.experience.findUnique({
     where: { id: req.params.id },
   });
@@ -27,7 +27,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
     });
   }
 
-  res.json({
+  return res.json({
     success: true,
     data: experience,
   });
