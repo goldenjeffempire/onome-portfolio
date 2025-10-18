@@ -1,0 +1,191 @@
+// Prisma schema for portfolio database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication and admin access
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  name          String
+  role          UserRole @default(ADMIN)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+// Projects model
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  description String   @db.Text
+  tech        String[] // Array of technologies used
+  image       String?  // Image URL or path
+  liveUrl     String?
+  githubUrl   String?
+  featured    Boolean  @default(false)
+  size        String   @default("medium") // small, medium, large
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("projects")
+}
+
+// Blog posts model
+model BlogPost {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  excerpt   String   @db.Text
+  content   String   @db.Text
+  author    String
+  category  String
+  tags      String[] // Array of tags
+  readTime  String
+  published Boolean  @default(false)
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blog_posts")
+  @@index([slug])
+  @@index([category])
+  @@index([published])
+}
+
+// Experience model
+model Experience {
+  id          String   @id @default(uuid())
+  company     String
+  position    String
+  location    String?
+  startDate   String
+  endDate     String?
+  current     Boolean  @default(false)
+  description String[] // Array of bullet points
+  tech        String[] // Technologies used
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("experience")
+}
+
+// Education model
+model Education {
+  id          String   @id @default(uuid())
+  institution String
+  degree      String
+  field       String?
+  location    String?
+  startDate   String
+  endDate     String?
+  current     Boolean  @default(false)
+  description String?  @db.Text
+  achievements String[] // Array of achievements
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("education")
+}
+
+// Testimonials model
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  position  String
+  company   String?
+  content   String   @db.Text
+  image     String?
+  rating    Int      @default(5)
+  published Boolean  @default(false)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+// Contact inquiries model
+model ContactInquiry {
+  id        String        @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String        @db.Text
+  status    InquiryStatus @default(NEW)
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("contact_inquiries")
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum InquiryStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+// AI Chat conversations model
+model ChatConversation {
+  id        String        @id @default(uuid())
+  sessionId String
+  messages  ChatMessage[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("chat_conversations")
+  @@index([sessionId])
+}
+
+model ChatMessage {
+  id             String           @id @default(uuid())
+  conversationId String
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           MessageRole
+  content        String           @db.Text
+  timestamp      DateTime         @default(now())
+
+  @@map("chat_messages")
+  @@index([conversationId])
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+// Stats/Metrics model for dynamic homepage stats
+model Stat {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  label     String
+  value     String
+  icon      String?
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("stats")
+}
