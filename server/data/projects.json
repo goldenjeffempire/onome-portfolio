@@ -1,0 +1,116 @@
+[
+  {
+    "id": "1bd84fd0-2063-4e29-a37b-71e65cfae32c",
+    "title": "AI-Powered Content Generator",
+    "description": "Advanced NLP application using GPT models to generate high-quality content. Features real-time streaming, context management, and multi-language support.",
+    "tech": [
+      "React",
+      "Python",
+      "FastAPI",
+      "OpenAI",
+      "TailwindCSS"
+    ],
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop",
+    "featured": true,
+    "size": "large",
+    "order": 1,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.962Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  },
+  {
+    "id": "ed61c850-7f54-428f-b403-d896036a2f4d",
+    "title": "Real-Time Analytics Dashboard",
+    "description": "Full-stack analytics platform with live data visualization, custom reporting, and predictive analytics powered by machine learning models.",
+    "tech": [
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "Chart.js",
+      "Docker"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
+    "featured": true,
+    "size": "medium",
+    "order": 2,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.963Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  },
+  {
+    "id": "5aab442e-afd7-4ae4-884c-00067800c10a",
+    "title": "E-Commerce Platform",
+    "description": "Scalable online marketplace with advanced search, payment integration, inventory management, and AI-powered product recommendations.",
+    "tech": [
+      "React",
+      "Express",
+      "MongoDB",
+      "Stripe",
+      "AWS"
+    ],
+    "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&auto=format&fit=crop",
+    "featured": false,
+    "size": "medium",
+    "order": 3,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.963Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  },
+  {
+    "id": "d4ee7ef0-45ac-4ae6-8abd-0f2a65a1c9d1",
+    "title": "Computer Vision Object Detector",
+    "description": "Deep learning model for real-time object detection and classification. Deployed with TensorFlow Lite for edge computing applications.",
+    "tech": [
+      "Python",
+      "TensorFlow",
+      "OpenCV",
+      "Flask",
+      "Docker"
+    ],
+    "image": "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&auto=format&fit=crop",
+    "featured": false,
+    "size": "small",
+    "order": 4,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.963Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  },
+  {
+    "id": "532c5a78-13c4-436a-a25b-0877bfe0abb1",
+    "title": "Social Media Management Tool",
+    "description": "Comprehensive platform for scheduling posts, analyzing engagement metrics, and managing multiple social media accounts from one dashboard.",
+    "tech": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop",
+    "featured": false,
+    "size": "small",
+    "order": 5,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.963Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  },
+  {
+    "id": "ab615c2e-dd0e-4790-b493-271b0d36e7c8",
+    "title": "Healthcare Appointment System",
+    "description": "HIPAA-compliant patient management system with appointment scheduling, medical records, and telemedicine capabilities.",
+    "tech": [
+      "Next.js",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "WebRTC"
+    ],
+    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop",
+    "featured": false,
+    "size": "medium",
+    "order": 6,
+    "published": true,
+    "createdAt": "2025-10-20T13:07:26.963Z",
+    "updatedAt": "2025-10-20T13:07:26.963Z"
+  }
+]

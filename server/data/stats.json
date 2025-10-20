@@ -1,0 +1,38 @@
+[
+  {
+    "id": "adf8466f-e6ca-4442-a77e-c416365d586d",
+    "key": "years_experience",
+    "label": "Years Experience",
+    "value": "5+",
+    "icon": "💼",
+    "order": 1,
+    "updatedAt": "2025-10-20T13:07:27.039Z"
+  },
+  {
+    "id": "2f8dae9f-9652-4096-a0f2-46de82b1bdf3",
+    "key": "projects_completed",
+    "label": "Projects Completed",
+    "value": "50+",
+    "icon": "🚀",
+    "order": 2,
+    "updatedAt": "2025-10-20T13:07:27.039Z"
+  },
+  {
+    "id": "6fa7d8af-73e7-41e8-b27a-f183b83efbd1",
+    "key": "happy_clients",
+    "label": "Happy Clients",
+    "value": "30+",
+    "icon": "😊",
+    "order": 3,
+    "updatedAt": "2025-10-20T13:07:27.039Z"
+  },
+  {
+    "id": "a43cbc85-eaa5-4823-b82f-fb8c9236b89c",
+    "key": "code_commits",
+    "label": "Code Commits",
+    "value": "10K+",
+    "icon": "💻",
+    "order": 4,
+    "updatedAt": "2025-10-20T13:07:27.039Z"
+  }
+]

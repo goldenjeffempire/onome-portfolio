@@ -1,0 +1,49 @@
+[
+  {
+    "id": "675c6426-a80c-4505-acb8-5bac3c3064f3",
+    "company": "Tech Innovations Inc.",
+    "position": "Senior Full Stack Developer",
+    "location": "Remote",
+    "startDate": "2022-01",
+    "current": true,
+    "description": [
+      "Led development of microservices architecture serving 1M+ users",
+      "Implemented CI/CD pipelines reducing deployment time by 60%",
+      "Mentored junior developers and conducted code reviews"
+    ],
+    "tech": [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "AWS",
+      "Docker"
+    ],
+    "order": 1,
+    "createdAt": "2025-10-20T13:07:27.025Z",
+    "updatedAt": "2025-10-20T13:07:27.025Z"
+  },
+  {
+    "id": "a6e1a499-fb90-4801-a76c-cc0e3e33065e",
+    "company": "DataCorp Solutions",
+    "position": "AI/ML Engineer",
+    "location": "Lagos, Nigeria",
+    "startDate": "2020-06",
+    "endDate": "2021-12",
+    "current": false,
+    "description": [
+      "Developed machine learning models for predictive analytics",
+      "Built data pipelines processing 10TB+ daily",
+      "Improved model accuracy by 25% through feature engineering"
+    ],
+    "tech": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "AWS SageMaker",
+      "Apache Spark"
+    ],
+    "order": 2,
+    "createdAt": "2025-10-20T13:07:27.025Z",
+    "updatedAt": "2025-10-20T13:07:27.025Z"
+  }
+]

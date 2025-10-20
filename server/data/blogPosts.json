@@ -1,0 +1,44 @@
+[
+  {
+    "id": "8875f727-9cbd-4e60-98d7-7cd15ae13f26",
+    "title": "The Rise of Artificial Intelligence in 2025",
+    "slug": "rise-of-artificial-intelligence-2025",
+    "excerpt": "Explore how AI is transforming industries and reshaping the future of technology.",
+    "content": "# The Rise of Artificial Intelligence in 2025\n\nArtificial Intelligence has evolved from a futuristic concept to an integral part of our daily lives. In 2025, AI is transforming industries at an unprecedented pace.\n\n## Key Developments\n\n1. **Generative AI** - Tools like GPT-5 are revolutionizing content creation\n2. **AI in Healthcare** - Diagnostic systems with 95%+ accuracy\n3. **Autonomous Systems** - Self-driving vehicles are becoming mainstream\n\nThe future is here, and it's powered by AI.",
+    "author": "Jeffery Onome Emuodafevware",
+    "category": "AI & Machine Learning",
+    "tags": [
+      "AI",
+      "Technology",
+      "Future",
+      "Innovation"
+    ],
+    "readTime": "5 min read",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop",
+    "published": true,
+    "views": 0,
+    "createdAt": "2025-10-20T13:07:27.014Z",
+    "updatedAt": "2025-10-20T13:07:27.014Z"
+  },
+  {
+    "id": "69793434-23f9-4c93-8087-2b081d2665fc",
+    "title": "Building Scalable Microservices with Node.js",
+    "slug": "building-scalable-microservices-nodejs",
+    "excerpt": "Learn best practices for designing and implementing microservices architecture using Node.js.",
+    "content": "# Building Scalable Microservices with Node.js\n\nMicroservices have become the de facto standard for building modern, scalable applications. This guide covers essential patterns and practices.\n\n## Architecture Patterns\n\n- Service Discovery\n- API Gateway\n- Circuit Breakers\n- Event-Driven Communication\n\nBuilding robust microservices requires careful planning and implementation of these patterns.",
+    "author": "Jeffery Onome Emuodafevware",
+    "category": "Web Development",
+    "tags": [
+      "Node.js",
+      "Microservices",
+      "Architecture",
+      "Backend"
+    ],
+    "readTime": "8 min read",
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop",
+    "published": true,
+    "views": 0,
+    "createdAt": "2025-10-20T13:07:27.014Z",
+    "updatedAt": "2025-10-20T13:07:27.014Z"
+  }
+]

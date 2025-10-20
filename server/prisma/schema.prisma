@@ -5,7 +5,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -15,24 +15,19 @@ model User {
   email         String   @unique
   passwordHash  String
   name          String
-  role          UserRole @default(ADMIN)
+  role          String   @default("ADMIN")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   @@map("users")
 }
 
-enum UserRole {
-  ADMIN
-  USER
-}
-
 // Projects model
 model Project {
   id          String   @id @default(uuid())
   title       String
-  description String   @db.Text
-  tech        String[] // Array of technologies used
+  description String
+  tech        String   // JSON array of technologies used
   image       String?  // Image URL or path
   liveUrl     String?
   githubUrl   String?
@@ -51,21 +46,19 @@ model BlogPost {
   id        String   @id @default(uuid())
   title     String
   slug      String   @unique
-  excerpt   String   @db.Text
-  content   String   @db.Text
+  excerpt   String
+  content   String
   author    String
   category  String
-  tags      String[] // Array of tags
+  tags      String   // JSON array of tags
   readTime  String
+  image     String?
   published Boolean  @default(false)
   views     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("blog_posts")
-  @@index([slug])
-  @@index([category])
-  @@index([published])
 }
 
 // Experience model
@@ -77,8 +70,8 @@ model Experience {
   startDate   String
   endDate     String?
   current     Boolean  @default(false)
-  description String[] // Array of bullet points
-  tech        String[] // Technologies used
+  description String   // JSON array of bullet points
+  tech        String   // JSON array of technologies used
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -88,19 +81,19 @@ model Experience {
 
 // Education model
 model Education {
-  id          String   @id @default(uuid())
-  institution String
-  degree      String
-  field       String?
-  location    String?
-  startDate   String
-  endDate     String?
-  current     Boolean  @default(false)
-  description String?  @db.Text
-  achievements String[] // Array of achievements
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(uuid())
+  institution  String
+  degree       String
+  field        String?
+  location     String?
+  startDate    String
+  endDate      String?
+  current      Boolean  @default(false)
+  description  String?
+  achievements String   // JSON array of achievements
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@map("education")
 }
@@ -111,7 +104,7 @@ model Testimonial {
   name      String
   position  String
   company   String?
-  content   String   @db.Text
+  content   String
   image     String?
   rating    Int      @default(5)
   published Boolean  @default(false)
@@ -124,57 +117,38 @@ model Testimonial {
 
 // Contact inquiries model
 model ContactInquiry {
-  id        String        @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
   email     String
   subject   String
-  message   String        @db.Text
-  status    InquiryStatus @default(NEW)
+  message   String
+  status    String   @default("NEW")
   ipAddress String?
   userAgent String?
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("contact_inquiries")
-  @@index([status])
-  @@index([createdAt])
-}
-
-enum InquiryStatus {
-  NEW
-  READ
-  REPLIED
-  ARCHIVED
 }
 
 // AI Chat conversations model
 model ChatConversation {
-  id        String        @id @default(uuid())
+  id        String   @id @default(uuid())
   sessionId String
-  messages  ChatMessage[]
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("chat_conversations")
-  @@index([sessionId])
 }
 
 model ChatMessage {
-  id             String           @id @default(uuid())
+  id             String   @id @default(uuid())
   conversationId String
-  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  role           MessageRole
-  content        String           @db.Text
-  timestamp      DateTime         @default(now())
+  role           String
+  content        String
+  timestamp      DateTime @default(now())
 
   @@map("chat_messages")
-  @@index([conversationId])
-}
-
-enum MessageRole {
-  USER
-  ASSISTANT
-  SYSTEM
 }
 
 // Stats/Metrics model for dynamic homepage stats
