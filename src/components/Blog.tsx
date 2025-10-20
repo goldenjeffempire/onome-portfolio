@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Tag, ChevronRight } from "lucide-react";
-import { blogPosts } from "../data/expandedBlogPosts";
+import { blogPosts, type BlogPost } from "../data/expandedBlogPosts";
 
 interface BlogProps {
   onPostSelect?: (postId: string) => void;
@@ -10,12 +10,12 @@ interface BlogProps {
 const Blog = ({ onPostSelect }: BlogProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", ...Array.from(new Set(blogPosts.map((post: any) => post.category)))];
+  const categories = ["All", ...Array.from(new Set(blogPosts.map((post) => post.category)))];
 
   const filteredPosts =
     selectedCategory === "All"
       ? blogPosts
-      : blogPosts.filter((post: any) => post.category === selectedCategory);
+      : blogPosts.filter((post) => post.category === selectedCategory);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,7 +84,7 @@ const Blog = ({ onPostSelect }: BlogProps) => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredPosts.map((post: any) => (
+          {filteredPosts.map((post: BlogPost) => (
             <motion.article
               key={post.id}
               variants={cardVariants}

@@ -1,9 +1,26 @@
 // API Service for backend communication
+import type {
+  Project,
+  BlogPost,
+  Experience,
+  Stats,
+  Education,
+  Testimonial,
+  ApiResponse,
+  PaginatedApiResponse,
+  ContactSubmission,
+  ChatMessage,
+  ChatResponse,
+} from '../types/api';
+
 const API_BASE_URL = '/api/v1';
 
 class ApiError extends Error {
-  constructor(public status: number, message: string) {
+  status: number;
+  
+  constructor(status: number, message: string) {
     super(message);
+    this.status = status;
     this.name = 'ApiError';
   }
 }
@@ -36,17 +53,17 @@ async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> 
 // Projects API
 export const projectsAPI = {
   getAll: async (published = true) => {
-    return fetchAPI<{ success: boolean; data: any[]; count: number }>(
+    return fetchAPI<{ success: boolean; data: Project[]; count: number }>(
       `/projects?published=${published}`
     );
   },
 
   getFeatured: async () => {
-    return fetchAPI<{ success: boolean; data: any[]; count: number }>('/projects/featured');
+    return fetchAPI<{ success: boolean; data: Project[]; count: number }>('/projects/featured');
   },
 
   getById: async (id: string) => {
-    return fetchAPI<{ success: boolean; data: any }>(`/projects/${id}`);
+    return fetchAPI<ApiResponse<Project>>(`/projects/${id}`);
   },
 };
 
@@ -59,55 +76,55 @@ export const blogAPI = {
     if (params.page) query.append('page', String(params.page));
     if (params.limit) query.append('limit', String(params.limit));
     
-    return fetchAPI<{ success: boolean; data: any[]; pagination: any }>(
+    return fetchAPI<PaginatedApiResponse<BlogPost>>(
       `/blog?${query.toString()}`
     );
   },
 
   getBySlug: async (slug: string) => {
-    return fetchAPI<{ success: boolean; data: any }>(`/blog/${slug}`);
+    return fetchAPI<ApiResponse<BlogPost>>(`/blog/${slug}`);
   },
 
   getByCategory: async (category: string) => {
-    return fetchAPI<{ success: boolean; data: any[]; count: number }>(`/blog/category/${category}`);
+    return fetchAPI<{ success: boolean; data: BlogPost[]; count: number }>(`/blog/category/${category}`);
   },
 };
 
 // Experience API
 export const experienceAPI = {
   getAll: async () => {
-    return fetchAPI<{ success: boolean; data: any[] }>('/experience');
+    return fetchAPI<{ success: boolean; data: Experience[] }>('/experience');
   },
 
   getById: async (id: string) => {
-    return fetchAPI<{ success: boolean; data: any }>(`/experience/${id}`);
+    return fetchAPI<ApiResponse<Experience>>(`/experience/${id}`);
   },
 };
 
 // Stats API
 export const statsAPI = {
   getAll: async () => {
-    return fetchAPI<{ success: boolean; data: any[] }>('/data/stats');
+    return fetchAPI<{ success: boolean; data: Stats[] }>('/data/stats');
   },
 };
 
 // Education API
 export const educationAPI = {
   getAll: async () => {
-    return fetchAPI<{ success: boolean; data: any[] }>('/data/education');
+    return fetchAPI<{ success: boolean; data: Education[] }>('/data/education');
   },
 };
 
 // Testimonials API
 export const testimonialsAPI = {
   getAll: async () => {
-    return fetchAPI<{ success: boolean; data: any[] }>('/data/testimonials');
+    return fetchAPI<{ success: boolean; data: Testimonial[] }>('/data/testimonials');
   },
 };
 
 // Contact API
 export const contactAPI = {
-  submit: async (data: { name: string; email: string; subject: string; message: string }) => {
+  submit: async (data: ContactSubmission) => {
     return fetchAPI<{ success: boolean; message: string; data: { id: string } }>('/contact', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -118,9 +135,10 @@ export const contactAPI = {
 // AI/Chatbot API
 export const aiAPI = {
   chat: async (message: string, sessionId?: string) => {
-    return fetchAPI<{ success: boolean; data: { message: string; sessionId: string } }>('/ai/chat', {
+    const payload: ChatMessage = { message, sessionId };
+    return fetchAPI<{ success: boolean; data: ChatResponse }>('/ai/chat', {
       method: 'POST',
-      body: JSON.stringify({ message, sessionId }),
+      body: JSON.stringify(payload),
     });
   },
 };

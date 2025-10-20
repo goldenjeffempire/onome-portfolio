@@ -21,7 +21,7 @@ const Chatbot = () => {
       };
       setMessages([welcomeMessage]);
     }
-  }, []);
+  }, [messages.length]);
 
   useEffect(() => {
     scrollToBottom();

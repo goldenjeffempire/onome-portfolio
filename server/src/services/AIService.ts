@@ -42,7 +42,7 @@ export class AIService {
     }
   }
 
-  async processMessage(message: string, sessionId?: string): Promise<any> {
+  async processMessage(message: string, sessionId?: string): Promise<{ message: string; sessionId: string }> {
     const session = sessionId || `session_${Date.now()}`;
 
     // Get or create conversation
@@ -111,7 +111,7 @@ export class AIService {
     }
 
     // Build conversation history for context
-    const messages: any[] = [
+    const messages: Array<{ role: string; content: string }> = [
       {
         role: 'system',
         content: `You are an AI assistant for Jeffery Onome Emuodafevware's professional portfolio. You're knowledgeable about his skills, experience, and projects. Be helpful, professional, and concise.

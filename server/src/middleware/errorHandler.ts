@@ -16,10 +16,11 @@ export class AppError extends Error {
 }
 
 export const errorHandler = (
-  err: any,
+  err: Error & { code?: string | number; errors?: Record<string, { message: string }> },
   req: Request,
   res: Response,
-  _next: NextFunction
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction
 ) => {
   let error = { ...err };
   error.message = err.message;
@@ -45,9 +46,9 @@ export const errorHandler = (
   }
 
   // Mongoose validation error
-  if (err.name === 'ValidationError') {
+  if (err.name === 'ValidationError' && err.errors) {
     const message = Object.values(err.errors)
-      .map((val: any) => val.message)
+      .map((val) => val.message)
       .join(', ');
     error = new AppError(message, 400);
   }
@@ -83,10 +84,8 @@ export const errorHandler = (
   });
 };
 
-export const asyncHandler = (fn: Function) => (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const asyncHandler = (
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void> | void
+) => (req: Request, res: Response, next: NextFunction) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };

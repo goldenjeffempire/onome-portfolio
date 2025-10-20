@@ -1,6 +1,6 @@
-# 🌍 Jeffery Onome Emuodafevware — Portfolio Website
+# 🌟 Jeffery Onome Emuodafevware — Portfolio Website
 
-A **modern, responsive, and interactive** personal portfolio built with **React, TypeScript, Vite, Tailwind CSS, and Framer Motion**.  
+A **modern, responsive, and interactive** personal portfolio built with **React 19, TypeScript, Vite, Tailwind CSS, and Framer Motion**.  
 Designed to showcase the professional work of a **Full Stack Software Engineer & AI/ML Expert**, this project emphasizes performance, aesthetics, and scalability.
 
 ---
@@ -18,13 +18,13 @@ Designed to showcase the professional work of a **Full Stack Software Engineer &
 
 ## 🚀 Tech Stack
 
-- ⚛ **React 18 + TypeScript** — Scalable, component-based architecture.
-- ⚡ **Vite** — Ultra-fast bundler with Hot Module Replacement (HMR).
-- 🎨 **Tailwind CSS** — Utility-first styling with glassmorphism and gradient effects.
-- 🌈 **Framer Motion** — Seamless animations and scroll-based interactions.
-- 🔗 **Lucide React Icons** — Clean, consistent iconography.
-- 📱 **PWA Ready** — Installable and works offline.
-- 🧠 **SEO Optimized** — Metadata, Open Graph, and Twitter card integration.
+- ⚛ **React 19 + TypeScript** — Scalable, component-based architecture with full type safety
+- ⚡ **Vite** — Lightning-fast bundler with Hot Module Replacement (HMR)
+- 🎨 **Tailwind CSS** — Utility-first styling with glassmorphism and gradient effects
+- 🌈 **Framer Motion** — Seamless animations and scroll-based interactions
+- 🔗 **Lucide React Icons** — Clean, consistent iconography
+- 🧠 **SEO Optimized** — Comprehensive metadata, Open Graph, and Twitter card integration
+- 📱 **Fully Responsive** — Optimized for mobile, tablet, and desktop
 
 ---
 
@@ -32,80 +32,99 @@ Designed to showcase the professional work of a **Full Stack Software Engineer &
 
 ```bash
 onome-portfolio/
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # GitHub Actions CI/CD
 ├── public/
-│   ├── pwa-192x192.png
-│   ├── pwa-512x512.png
-│   └── vite.svg
+│   ├── profile.jpg             # Profile image
+│   ├── robots.txt              # SEO robots file
+│   ├── sitemap.xml             # Sitemap for search engines
+│   └── vite.svg                # Favicon
 ├── src/
-│   ├── components/
-│   │   ├── Hero.tsx
+│   ├── components/             # React components
 │   │   ├── About.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Experience.tsx
+│   │   ├── Blog.tsx
+│   │   ├── BlogPost.tsx
+│   │   ├── Chatbot.tsx
+│   │   ├── Contact.tsx
+│   │   ├── CTA.tsx
 │   │   ├── Education.tsx
-│   │   └── Contact.tsx
-│   ├── styles/
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── Experience.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── LoadingSplash.tsx
+│   │   └── Navigation.tsx
+│   ├── data/                   # Static data
+│   │   ├── blogPosts.ts
+│   │   └── expandedBlogPosts.ts
+│   ├── pages/                  # Page components
+│   │   ├── BlogPage.tsx
+│   │   ├── ContactPage.tsx
+│   │   ├── ExperiencePage.tsx
+│   │   ├── HomePage.tsx
+│   │   └── ProjectsPage.tsx
+│   ├── services/               # API services
+│   │   └── api.ts
+│   ├── styles/                 # Global styles
 │   │   └── globals.css
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.ts
-└── README.md
+│   ├── types/                  # TypeScript types
+│   │   └── api.ts
+│   ├── utils/                  # Utility functions
+│   │   └── chatbotEngine.ts
+│   ├── App.tsx                 # Main app component
+│   ├── main.tsx                # Application entry point
+│   └── index.css               # Tailwind imports
+├── .env.example                # Environment variables template
+├── .gitignore                  # Git ignore file
+├── CONTRIBUTING.md             # Contribution guidelines
+├── LICENSE                     # MIT License
+├── package.json                # Dependencies and scripts
+├── tailwind.config.js          # Tailwind configuration
+├── tsconfig.json               # TypeScript configuration
+├── vite.config.ts              # Vite configuration
+└── README.md                   # This file
 ```
 
 ---
 
-## ⚙️ Setup (Android Termux)
+## ⚙️ Getting Started
 
-### 1. Install Dependencies
+### Prerequisites
 
-```bash
-pkg update && pkg upgrade -y
-pkg install nodejs git -y
-```
+- **Node.js** 20.x or higher
+- **npm** or **yarn**
 
-### 2. Create Project Directory
+### Installation
 
-```bash
-mkdir onome-portfolio && cd onome-portfolio
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/jefferyonome/onome-portfolio.git
+   cd onome-portfolio
+   ```
 
-### 3. Initialize Vite + React + TypeScript
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm create vite@latest . -- --template react-ts
-```
-
-### 4. Install Required Libraries
-
-```bash
-npm install
-npm install framer-motion lucide-react
-npm install -D tailwindcss postcss autoprefixer vite-plugin-pwa
-```
-
-### 5. Configure Tailwind
-
-```bash
-npx tailwindcss init -p
-```
-
-Replace the default configuration and `src/` files with those provided in this repository.
+3. **Set up environment variables** (optional):
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
 ---
 
 ## 👨‍💻 Development
 
-To start the development server:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Access the project at `http://localhost:5173` (or the URL displayed in Termux).
+The application will be available at `http://localhost:5000`
 
 ---
 
@@ -113,16 +132,42 @@ Access the project at `http://localhost:5173` (or the URL displayed in Termux).
 
 ```bash
 npm run build
-npm run preview
 ```
 
 This generates an optimized, minified build in the `/dist` directory.
+
+### Preview Production Build
+
+```bash
+npm run start
+```
+
+---
+
+## 🧪 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint errors automatically
+- `npm run type-check` - Run TypeScript type checking
+- `npm run preview` - Preview build locally
 
 ---
 
 ## 🌐 Deployment
 
-### **Option 1: Deploy with Vercel**
+### Deploy to Replit
+
+This project is configured for deployment on Replit:
+
+1. Import the repository to Replit
+2. The project will auto-configure and install dependencies
+3. Click "Run" to start the development server
+4. Click "Publish" for production deployment
+
+### Deploy to Vercel
 
 ```bash
 npm install -g vercel
@@ -130,29 +175,47 @@ vercel login
 vercel
 ```
 
-### **Option 2: Deploy with Netlify (via GitHub)**
+### Deploy to Netlify
 
 ```bash
-git init
-git add .
-git commit -m "Initial commit - Onome Portfolio"
-git branch -M main
-git remote add origin https://github.com/<yourusername>/onome-portfolio.git
-git push -u origin main
+# Connect via GitHub
+1. Push to GitHub
+2. Connect repository to Netlify
+3. Set build command: npm run build
+4. Set publish directory: dist
 ```
 
-Then connect the GitHub repository to Netlify, set the build command to `npm run build`, and the publish directory to `dist/`.
+### Deploy to GitHub Pages
+
+1. Update `vite.config.ts` with your base path
+2. Build the project: `npm run build`
+3. Deploy the `dist` folder to GitHub Pages
 
 ---
 
 ## 🔥 Key Features
 
-- 🌐 Sleek, responsive UI/UX
+### Design & UI
+- 🌐 Sleek, responsive UI/UX across all devices
 - ✨ Glassmorphism and gradient design aesthetics
-- 💫 Smooth animations and transitions
-- 📱 Progressive Web App (offline-ready + installable)
+- 💫 Smooth animations and transitions with Framer Motion
+- 🎨 Dark theme with sky-blue and purple accents
+- 🖼 Professional profile photo integration
+
+### Functionality
+- 📝 Dynamic blog system with category filtering
+- 💼 Interactive experience and education timelines
+- 🤖 AI-powered chatbot (optional OpenAI integration)
+- 📧 Functional contact form with validation
 - 🔍 Built-in SEO and Open Graph optimization
+- ⚡ Fast page loads with code splitting
+
+### Development
 - 🧩 Scalable and modular architecture
+- 🔒 Full TypeScript type safety
+- ✅ ESLint and Prettier configured
+- 🚀 GitHub Actions CI/CD pipeline
+- 📦 Optimized build with Vite
 
 ---
 
@@ -165,14 +228,37 @@ Then connect the GitHub repository to Netlify, set the build command to `npm run
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
+
+---
+
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 💭 Final Note
+## 💭 Acknowledgments
 
-> _“Good code is poetry in logic — structured, efficient, and beautiful.”_
+- Built with ❤️ using modern web technologies
+- Inspired by the latest design trends in web development
+- Thanks to the open-source community for amazing tools and libraries
+
+---
+
+## 📊 Project Status
+
+- ✅ Fully functional and production-ready
+- ✅ Responsive across all devices
+- ✅ SEO optimized
+- ✅ Accessibility features implemented
+- ✅ CI/CD pipeline configured
+- ✅ Performance optimized
+
+---
+
+> _"Good code is poetry in logic — structured, efficient, and beautiful."_
 >
 > This portfolio bridges creativity and technology — a living example of what happens when engineering meets design with intent and precision.

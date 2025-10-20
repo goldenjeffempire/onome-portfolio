@@ -17,7 +17,7 @@ const DB_FILES = {
 async function ensureDataDir() {
   try {
     await fs.mkdir(DB_DIR, { recursive: true });
-  } catch (error) {
+  } catch {
     // Directory already exists
   }
 }
@@ -28,7 +28,7 @@ async function readData<T>(collection: keyof typeof DB_FILES): Promise<T[]> {
     await ensureDataDir();
     const data = await fs.readFile(DB_FILES[collection], 'utf-8');
     return JSON.parse(data);
-  } catch (error) {
+  } catch {
     // File doesn't exist or is empty, return empty array
     return [];
   }

@@ -2,8 +2,10 @@ import env from '../config/env';
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
+type LogMeta = Record<string, unknown>;
+
 class Logger {
-  private log(level: LogLevel, message: string, meta?: any) {
+  private log(level: LogLevel, message: string, meta?: LogMeta) {
     const timestamp = new Date().toISOString();
     const logMessage = {
       timestamp,
@@ -25,19 +27,19 @@ class Logger {
     console.log(`${color}${JSON.stringify(logMessage, null, 2)}${reset}`);
   }
 
-  info(message: string, meta?: any) {
+  info(message: string, meta?: LogMeta) {
     this.log('info', message, meta);
   }
 
-  warn(message: string, meta?: any) {
+  warn(message: string, meta?: LogMeta) {
     this.log('warn', message, meta);
   }
 
-  error(message: string, meta?: any) {
+  error(message: string, meta?: LogMeta) {
     this.log('error', message, meta);
   }
 
-  debug(message: string, meta?: any) {
+  debug(message: string, meta?: LogMeta) {
     if (env.NODE_ENV === 'development') {
       this.log('debug', message, meta);
     }

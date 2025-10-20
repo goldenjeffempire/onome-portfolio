@@ -8,7 +8,7 @@ interface BlogPostProps {
 }
 
 const BlogPost = ({ postId, onBack }: BlogPostProps) => {
-  const post = blogPosts.find((p: any) => p.id === postId);
+  const post = blogPosts.find((p) => p.id === postId);
 
   if (!post) {
     return (

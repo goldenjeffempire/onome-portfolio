@@ -96,7 +96,7 @@ const Contact = () => {
         setErrors({});
         setTouched({});
       }, 3000);
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
       setIsSubmitting(false);
       
