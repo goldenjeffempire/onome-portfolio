@@ -15,7 +15,7 @@ const Chatbot = () => {
     if (messages.length === 0) {
       const welcomeMessage: Message = {
         id: '0',
-        text: "Hi! I'm Jeffery's AI assistant. I can help you learn about his skills, experience, and projects. What would you like to know?",
+        text: "👋 Hi! I'm JeffBot, Jeffery's AI assistant! I'm here to help you explore his portfolio, skills, experience, and projects. Ask me anything!",
         sender: 'bot',
         timestamp: new Date()
       };
@@ -76,9 +76,11 @@ const Chatbot = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:shadow-sky-500/50 transition-shadow"
+            className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-r from-sky-500 via-blue-600 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:shadow-sky-500/50 transition-shadow group"
+            aria-label="Open JeffBot AI Assistant"
           >
-            <MessageCircle className="w-7 h-7" />
+            <MessageCircle className="w-7 h-7 group-hover:scale-110 transition-transform" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
           </motion.button>
         )}
       </AnimatePresence>
@@ -91,14 +93,21 @@ const Chatbot = () => {
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
-            <div className="bg-gradient-to-r from-sky-500 to-blue-600 p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-sky-500 via-blue-600 to-purple-600 p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <motion.div 
+                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                >
                   <Sparkles className="w-6 h-6 text-white" />
-                </div>
+                </motion.div>
                 <div>
-                  <h3 className="text-white font-semibold">AI Assistant</h3>
-                  <p className="text-sky-100 text-xs">Always here to help</p>
+                  <h3 className="text-white font-bold text-lg">JeffBot</h3>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <p className="text-sky-100 text-xs">Online & Ready to Help</p>
+                  </div>
                 </div>
               </div>
               <button

@@ -8,6 +8,7 @@ export interface BlogPost {
   category: string;
   tags: string[];
   readTime: string;
+  image?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -15,6 +16,7 @@ export const blogPosts: BlogPost[] = [
     id: "1",
     title: "The Rise of Artificial Intelligence in 2025",
     excerpt: "Explore how AI is transforming industries and reshaping the future of technology.",
+    image: "/blog-ai.jpg",
     content: `# The Rise of Artificial Intelligence in 2025
 
 Artificial Intelligence has evolved from a futuristic concept to an integral part of our daily lives. In 2025, AI is transforming industries at an unprecedented pace.
@@ -49,6 +51,7 @@ The AI revolution is here, and it's reshaping how we work, create, and live.`,
     id: "2",
     title: "Web3 and Blockchain: Beyond Cryptocurrency",
     excerpt: "Discover how blockchain technology is revolutionizing industries beyond digital currencies.",
+    image: "/blog-web3.jpg",
     content: `# Web3 and Blockchain: Beyond Cryptocurrency
 
 Blockchain technology has evolved far beyond its cryptocurrency origins, creating new possibilities for decentralized applications.
@@ -84,6 +87,7 @@ Web3 represents the next evolution of the internet, prioritizing decentralizatio
     id: "3",
     title: "Cloud Computing Trends in 2025",
     excerpt: "The latest developments in cloud infrastructure and serverless computing.",
+    image: "/blog-cloud.jpg",
     content: `# Cloud Computing Trends in 2025
 
 Cloud computing continues to evolve with new paradigms and technologies emerging rapidly.

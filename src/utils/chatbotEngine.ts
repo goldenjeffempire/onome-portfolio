@@ -17,7 +17,7 @@ export class LocalChatbot {
     this.knowledgeBase = [
       {
         keywords: ['hello', 'hi', 'hey', 'greetings'],
-        response: "Hello! I'm Jeffery's AI assistant. I can help you learn about his skills, projects, and experience. How can I assist you today?",
+        response: "👋 Hello! I'm JeffBot, your friendly AI guide to Jeffery's portfolio. I can help you learn about his skills, projects, and experience. How can I assist you today?",
         category: 'greeting'
       },
       {
@@ -141,7 +141,7 @@ export class LocalChatbot {
 
   private findBestResponse(message: string): string {
     let bestMatch: ChatResponse = {
-      response: "I'm not sure I understand that question. You can ask me about Jeffery's skills, experience, projects, education, or how to contact him. What would you like to know?",
+      response: "🤔 I'm not sure I understand that question. As JeffBot, I can help you with:\n• 💼 Jeffery's skills & expertise\n• 📊 His work experience\n• 🚀 Projects & portfolio\n• 🎓 Education & certifications\n• 📧 How to contact him\n\nWhat would you like to know?",
       confidence: 0
     };
 
@@ -170,12 +170,12 @@ export class LocalChatbot {
 
     const greetingWords = ['hello', 'hi', 'hey'];
     if (greetingWords.some(word => message.includes(word))) {
-      return "Hello! I'm Jeffery's AI assistant. I can help you learn about his skills, projects, and experience. How can I assist you today?";
+      return "👋 Hello! I'm JeffBot, your personal guide to Jeffery's portfolio. I can help you learn about his skills, projects, and experience. How can I assist you today?";
     }
 
     const questionWords = ['what', 'who', 'when', 'where', 'why', 'how'];
     if (questionWords.some(word => message.includes(word))) {
-      return "I can help you with information about:\n• Skills & Technologies\n• Work Experience\n• Projects & Portfolio\n• Education & Certifications\n• Contact Information\n\nWhat specifically would you like to know?";
+      return "💡 I can help you with information about:\n• 💻 Skills & Technologies\n• 📊 Work Experience  \n• 🚀 Projects & Portfolio\n• 🎓 Education & Certifications\n• 📧 Contact Information\n\nWhat specifically would you like to know?";
     }
 
     return bestMatch.response;
@@ -183,11 +183,11 @@ export class LocalChatbot {
 
   public getSuggestions(): string[] {
     return [
-      "What are Jeffery's skills?",
-      "Tell me about his experience",
-      "What projects has he worked on?",
-      "How can I contact him?",
-      "What technologies does he use?"
+      "💻 What are Jeffery's skills?",
+      "📊 Tell me about his experience",
+      "🚀 What projects has he worked on?",
+      "📧 How can I contact him?",
+      "🤖 What AI/ML expertise does he have?"
     ];
   }
 }

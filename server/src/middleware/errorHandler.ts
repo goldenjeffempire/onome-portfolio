@@ -16,11 +16,11 @@ export class AppError extends Error {
 }
 
 export const errorHandler = (
-  err: Error & { code?: string | number; errors?: Record<string, { message: string }> },
+  err: Error & { code?: string | number; errors?: Record<string, { message: string }>; statusCode?: number },
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  next: NextFunction
+  _next: NextFunction
 ) => {
   let error = { ...err };
   error.message = err.message;

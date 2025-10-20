@@ -111,8 +111,27 @@ onome-portfolio/
 3. **Set up environment variables** (optional):
    ```bash
    cp .env.example .env
-   # Edit .env with your configuration
+   # Edit .env with your configuration (contact info, social links, etc.)
    ```
+
+   **Available Environment Variables**:
+   ```bash
+   # Contact Information
+   VITE_CONTACT_EMAIL=your-email@example.com
+   VITE_CONTACT_PHONE_PRIMARY=+1234567890
+   VITE_CONTACT_PHONE_SECONDARY=+0987654321
+   VITE_CONTACT_LOCATION=Your City, Country
+   
+   # Social Links
+   VITE_LINKEDIN_URL=https://linkedin.com/in/yourprofile
+   VITE_GITHUB_URL=https://github.com/yourusername
+   VITE_TWITTER_URL=https://twitter.com/yourhandle
+   
+   # Site Configuration
+   VITE_SITE_URL=https://yourdomain.com
+   ```
+   
+   **Note**: All frontend environment variables must be prefixed with `VITE_` to be accessible in the browser. If no variables are set, the app uses default values.
 
 ---
 

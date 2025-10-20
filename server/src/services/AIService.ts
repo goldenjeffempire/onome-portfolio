@@ -111,7 +111,7 @@ export class AIService {
     }
 
     // Build conversation history for context
-    const messages: Array<{ role: string; content: string }> = [
+    const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
       {
         role: 'system',
         content: `You are an AI assistant for Jeffery Onome Emuodafevware's professional portfolio. You're knowledgeable about his skills, experience, and projects. Be helpful, professional, and concise.

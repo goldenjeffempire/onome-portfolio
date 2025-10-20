@@ -92,6 +92,16 @@ const Blog = ({ onPostSelect }: BlogProps) => {
               className="bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 hover:border-sky-500/50 transition-all duration-300 group cursor-pointer"
               onClick={() => onPostSelect?.(post.id)}
             >
+              {post.image && (
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                </div>
+              )}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="px-3 py-1 bg-sky-500/20 text-sky-400 rounded-full text-sm font-medium">

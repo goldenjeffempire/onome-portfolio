@@ -34,6 +34,16 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          # Frontend environment variables - use GitHub Secrets or fallback to defaults
+          VITE_CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'jeffemuodafe124@gmail.com' }}
+          VITE_CONTACT_PHONE_PRIMARY: ${{ secrets.CONTACT_PHONE_PRIMARY || '+234 805 258 7419' }}
+          VITE_CONTACT_PHONE_SECONDARY: ${{ secrets.CONTACT_PHONE_SECONDARY || '+234 901 704 8791' }}
+          VITE_CONTACT_LOCATION: ${{ secrets.CONTACT_LOCATION || 'Lagos, Nigeria' }}
+          VITE_LINKEDIN_URL: ${{ secrets.LINKEDIN_URL || 'https://www.linkedin.com/in/jefferyonome' }}
+          VITE_GITHUB_URL: ${{ secrets.GITHUB_URL || 'https://github.com/jefferyonome' }}
+          VITE_TWITTER_URL: ${{ secrets.TWITTER_URL || 'https://twitter.com/jefferyonome' }}
+          VITE_SITE_URL: ${{ secrets.SITE_URL || 'https://jefferyonome.github.io/onome-portfolio' }}
+          VITE_API_BASE_URL: ${{ secrets.API_BASE_URL || '/api/v1' }}
           
       - name: Setup Pages
         uses: actions/configure-pages@v4

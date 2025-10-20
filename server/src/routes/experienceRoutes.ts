@@ -37,13 +37,14 @@ router.get('/:id', asyncHandler(async (req: Request, res: Response) => {
   const experience = await Database.findById<Experience>('experience', req.params.id);
 
   if (!experience) {
-    return res.status(404).json({
+    res.status(404).json({
       success: false,
       message: 'Experience not found',
     });
+    return;
   }
 
-  return res.json({
+  res.json({
     success: true,
     data: experience,
   });

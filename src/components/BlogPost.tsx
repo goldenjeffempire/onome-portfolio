@@ -43,17 +43,28 @@ const BlogPost = ({ postId, onBack }: BlogPostProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-slate-700/50"
+          className="bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50"
         >
-          <div className="mb-6">
-            <span className="px-4 py-2 bg-sky-500/20 text-sky-400 rounded-full text-sm font-medium">
-              {post.category}
-            </span>
-          </div>
+          {post.image && (
+            <div className="relative h-64 md:h-96 overflow-hidden">
+              <img 
+                src={post.image} 
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-800 via-slate-800/60 to-transparent"></div>
+            </div>
+          )}
+          <div className="p-8 md:p-12">
+            <div className="mb-6">
+              <span className="px-4 py-2 bg-sky-500/20 text-sky-400 rounded-full text-sm font-medium">
+                {post.category}
+              </span>
+            </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            {post.title}
-          </h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              {post.title}
+            </h1>
 
           <div className="flex flex-wrap items-center gap-6 text-slate-400 mb-8 pb-8 border-b border-slate-700">
             <div className="flex items-center gap-2">
@@ -123,6 +134,7 @@ const BlogPost = ({ postId, onBack }: BlogPostProps) => {
                 </span>
               ))}
             </div>
+          </div>
           </div>
         </motion.article>
       </div>
