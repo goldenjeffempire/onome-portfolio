@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import { config } from "../config/env";
 
 interface FormErrors {
   name?: string;
@@ -78,7 +79,7 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      const mailtoLink = `mailto:jeffemuodafe124@gmail.com?subject=${encodeURIComponent(
+      const mailtoLink = `mailto:${config.contact.email}?subject=${encodeURIComponent(
         formData.subject
       )}&body=${encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
@@ -165,7 +166,7 @@ const Contact = () => {
 
             <div className="space-y-4">
               <motion.a
-                href="mailto:jeffemuodafe124@gmail.com"
+                href={`mailto:${config.contact.email}`}
                 whileHover={{ x: 10, scale: 1.02 }}
                 className="flex items-center gap-4 text-gray-300 hover:text-sky-400 transition-colors group"
               >
@@ -177,12 +178,12 @@ const Contact = () => {
                 </motion.div>
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
-                  <p className="font-medium">jeffemuodafe124@gmail.com</p>
+                  <p className="font-medium">{config.contact.email}</p>
                 </div>
               </motion.a>
 
               <motion.a
-                href="tel:+2348052587419"
+                href={`tel:${config.contact.phonePrimary.replace(/\s/g, '')}`}
                 whileHover={{ x: 10, scale: 1.02 }}
                 className="flex items-center gap-4 text-gray-300 hover:text-purple-400 transition-colors group"
               >
@@ -194,8 +195,8 @@ const Contact = () => {
                 </motion.div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
-                  <p className="font-medium">+234 805 258 7419</p>
-                  <p className="font-medium text-sm">+234 901 704 8791</p>
+                  <p className="font-medium">{config.contact.phonePrimary}</p>
+                  <p className="font-medium text-sm">{config.contact.phoneSecondary}</p>
                 </div>
               </motion.a>
 
@@ -211,7 +212,7 @@ const Contact = () => {
                 </motion.div>
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
-                  <p className="font-medium">Lagos, Nigeria</p>
+                  <p className="font-medium">{config.contact.location}</p>
                 </div>
               </motion.div>
             </div>
@@ -220,7 +221,7 @@ const Contact = () => {
               <p className="text-gray-500 mb-4">Connect with me</p>
               <div className="flex gap-4">
                 <motion.a
-                  href="https://www.linkedin.com/in/jefferyonome"
+                  href={config.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -5, rotate: 5 }}
@@ -230,7 +231,7 @@ const Contact = () => {
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://github.com/jefferyonome"
+                  href={config.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -5, rotate: -5 }}
@@ -240,7 +241,7 @@ const Contact = () => {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://twitter.com/jefferyonome"
+                  href={config.social.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -5, rotate: 5 }}
