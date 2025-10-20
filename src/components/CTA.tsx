@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CTA = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 px-6">
       <motion.div
@@ -40,8 +43,8 @@ const CTA = () => {
               viewport={{ once: true }}
               className="flex flex-wrap gap-4 justify-center"
             >
-              <motion.a
-                href="#contact"
+              <motion.button
+                onClick={() => navigate('/contact')}
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 0 40px rgba(14, 165, 233, 0.5)",
@@ -56,11 +59,10 @@ const CTA = () => {
                 >
                   <ArrowRight size={20} />
                 </motion.div>
-              </motion.a>
+              </motion.button>
 
-              <motion.a
-                href="/resume.pdf"
-                download
+              <motion.button
+                onClick={() => navigate('/projects')}
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: "rgba(14, 165, 233, 0.1)",
@@ -69,9 +71,9 @@ const CTA = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 glass border border-sky-500/30 text-sky-400 px-8 py-4 rounded-full text-lg font-semibold transition-all"
               >
-                <Download size={20} />
-                Download Resume
-              </motion.a>
+                <Mail size={20} />
+                View Projects
+              </motion.button>
             </motion.div>
           </div>
         </div>

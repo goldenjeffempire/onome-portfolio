@@ -197,30 +197,37 @@ const Projects = () => {
                 </div>
 
                 <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {project.liveUrl && (
-                    <motion.button
+                  {project.liveUrl ? (
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, backgroundColor: "rgba(14, 165, 233, 0.8)" }}
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center gap-2 bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-medium"
                     >
                       <ExternalLink size={16} />
                       Live Demo
-                    </motion.button>
-                  )}
-                  {project.githubUrl && (
-                    <motion.button
+                    </motion.a>
+                  ) : null}
+                  {project.githubUrl ? (
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, borderColor: "rgba(14, 165, 233, 0.8)" }}
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center gap-2 border border-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm font-medium"
                     >
                       <Github size={16} />
                       Code
-                    </motion.button>
-                  )}
+                    </motion.a>
+                  ) : null}
                   {!project.liveUrl && !project.githubUrl && (
-                    <button className="w-full bg-gray-800 text-gray-400 px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed">
-                      Private Project
-                    </button>
+                    <div className="w-full bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm font-medium text-center">
+                      <p className="font-semibold">Showcase Project</p>
+                      <p className="text-xs text-gray-400 mt-1">Contact for details</p>
+                    </div>
                   )}
                 </div>
               </div>

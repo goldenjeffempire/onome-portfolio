@@ -1,10 +1,19 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const y1 = useTransform(scrollY, [0, 500], [0, 150]);
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
@@ -128,8 +137,8 @@ const Hero = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="flex flex-wrap gap-4 justify-center"
         >
-          <motion.a
-            href="#about"
+          <motion.button
+            onClick={scrollToAbout}
             whileHover={{ 
               scale: 1.05, 
               boxShadow: "0 0 30px rgba(14, 165, 233, 0.5)",
@@ -146,10 +155,10 @@ const Hero = () => {
             >
               <ArrowRight size={20} />
             </motion.div>
-          </motion.a>
+          </motion.button>
 
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => navigate('/contact')}
             whileHover={{ 
               scale: 1.05,
               backgroundColor: "rgba(14, 165, 233, 0.1)",
@@ -159,7 +168,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 glass border border-sky-500/30 text-sky-400 px-6 py-3 rounded-full text-lg font-semibold transition-all"
           >
             Let's Connect
-          </motion.a>
+          </motion.button>
         </motion.div>
       </motion.div>
 

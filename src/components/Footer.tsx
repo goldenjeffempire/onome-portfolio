@@ -1,45 +1,54 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { config } from "../config/env";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const quickLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
+    { label: "Home", route: "/" },
+    { label: "Projects", route: "/projects" },
+    { label: "Experience", route: "/experience" },
+    { label: "Blog", route: "/blog" },
   ];
 
   const moreLinks = [
-    { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", route: "/contact" },
   ];
+
+  const handleLinkClick = (route: string) => {
+    if (location.pathname === route) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate(route);
+    }
+  };
 
   const socialLinks = [
     {
       icon: <Linkedin size={20} />,
-      href: "https://www.linkedin.com/in/jefferyonome",
+      href: config.social.linkedin,
       label: "LinkedIn",
       color: "hover:text-sky-400 hover:bg-sky-500/20",
     },
     {
       icon: <Github size={20} />,
-      href: "https://github.com/jefferyonome",
+      href: config.social.github,
       label: "GitHub",
       color: "hover:text-purple-400 hover:bg-purple-500/20",
     },
     {
       icon: <Twitter size={20} />,
-      href: "https://twitter.com/jefferyonome",
+      href: config.social.twitter,
       label: "Twitter",
       color: "hover:text-sky-400 hover:bg-sky-500/20",
     },
     {
       icon: <Mail size={20} />,
-      href: "mailto:jeffemuodafe124@gmail.com",
+      href: `mailto:${config.contact.email}`,
       label: "Email",
       color: "hover:text-purple-400 hover:bg-purple-500/20",
     },
@@ -92,13 +101,13 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <motion.a
-                    href={link.href}
+                  <motion.button
+                    onClick={() => handleLinkClick(link.route)}
                     whileHover={{ x: 5 }}
-                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block"
+                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block text-left"
                   >
                     {link.label}
-                  </motion.a>
+                  </motion.button>
                 </li>
               ))}
             </ul>
@@ -114,13 +123,13 @@ const Footer = () => {
             <ul className="space-y-2">
               {moreLinks.map((link) => (
                 <li key={link.label}>
-                  <motion.a
-                    href={link.href}
+                  <motion.button
+                    onClick={() => handleLinkClick(link.route)}
                     whileHover={{ x: 5 }}
-                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block"
+                    className="text-gray-400 hover:text-sky-400 transition-colors inline-block text-left"
                   >
                     {link.label}
-                  </motion.a>
+                  </motion.button>
                 </li>
               ))}
             </ul>
