@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { config } from "../config/env";
+import { portfolioConfig } from "../config/portfolio";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -69,9 +70,9 @@ const Footer = () => {
             viewport={{ once: true }}
             className="md:col-span-2"
           >
-            <h3 className="text-2xl font-bold text-gradient mb-4">Jeffery Onome</h3>
+            <h3 className="text-2xl font-bold text-gradient mb-4">{portfolioConfig.personal.firstName} {portfolioConfig.personal.lastName}</h3>
             <p className="text-gray-400 mb-4 max-w-md">
-              Full Stack Software Engineer & AI/ML Expert. Building innovative solutions that make a difference.
+              {portfolioConfig.footer.tagline}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -138,10 +139,10 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm text-center md:text-left">
-            © {currentYear} Jeffery Onome Emuodafevware. All rights reserved.
+            © {currentYear} {portfolioConfig.personal.name}. {portfolioConfig.footer.copyright}
           </p>
           <p className="text-gray-500 text-sm flex items-center gap-1">
-            Built with <Heart size={14} className="text-red-500 fill-red-500" /> using React, TypeScript & Framer Motion
+            {portfolioConfig.footer.builtWith.split('React')[0]} <Heart size={14} className="text-red-500 fill-red-500" /> {portfolioConfig.footer.builtWith.split('with')[1]}
           </p>
         </div>
       </div>

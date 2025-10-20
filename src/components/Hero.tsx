@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { portfolioConfig } from "../config/portfolio";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -110,7 +111,7 @@ const Hero = () => {
           >
             <Sparkles className="w-4 h-4 text-sky-400" />
           </motion.div>
-          <span className="text-sm text-sky-300">Available for exciting projects</span>
+          <span className="text-sm text-sky-300">{portfolioConfig.hero.greeting}</span>
         </motion.div>
 
         <motion.h1
@@ -119,7 +120,7 @@ const Hero = () => {
           transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
           whileHover={{ scale: 1.02 }}
         >
-          Jeffery Onome Emuodafevware
+          {portfolioConfig.hero.name}
         </motion.h1>
 
         <motion.p
@@ -128,7 +129,7 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-lg sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
         >
-          Software Engineer | AI/ML Expert | Full Stack Developer
+          {portfolioConfig.hero.tagline}
         </motion.p>
 
         <motion.div
@@ -148,7 +149,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-full text-lg font-semibold transition-all"
             style={{ transformStyle: "preserve-3d" }}
           >
-            View My Work
+            {portfolioConfig.hero.cta.primary}
             <motion.div
               animate={{ x: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -167,7 +168,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 glass border border-sky-500/30 text-sky-400 px-6 py-3 rounded-full text-lg font-semibold transition-all"
           >
-            Let's Connect
+            {portfolioConfig.hero.cta.secondary}
           </motion.button>
         </motion.div>
       </motion.div>
