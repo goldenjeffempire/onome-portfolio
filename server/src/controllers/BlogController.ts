@@ -1,6 +1,23 @@
 import { Request, Response } from 'express';
-import prisma from '../config/database';
+import { Database } from '../db/database';
 import { AppError } from '../middleware/errorHandler';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  category: string;
+  tags: string[];
+  readTime: string;
+  image?: string;
+  published: boolean;
+  views: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export class BlogController {
   async getAll(req: Request, res: Response) {
@@ -10,24 +27,24 @@ export class BlogController {
     const limitNum = parseInt(limit as string);
     const skip = (pageNum - 1) * limitNum;
 
-    const where = {
-      published: published === 'true',
-      ...(category && { category: category as string }),
-    };
+    let posts = await Database.find<BlogPost>('blogPosts');
+    
+    // Filter
+    posts = posts.filter(p => {
+      if (published === 'true' && !p.published) return false;
+      if (category && p.category !== category) return false;
+      return true;
+    });
 
-    const [posts, total] = await Promise.all([
-      prisma.blogPost.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-        skip,
-        take: limitNum,
-      }),
-      prisma.blogPost.count({ where }),
-    ]);
+    // Sort by createdAt desc
+    posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    const total = posts.length;
+    const paginatedPosts = posts.slice(skip, skip + limitNum);
 
     res.json({
       success: true,
-      data: posts,
+      data: paginatedPosts,
       pagination: {
         page: pageNum,
         limit: limitNum,
@@ -40,19 +57,15 @@ export class BlogController {
   async getBySlug(req: Request, res: Response) {
     const { slug } = req.params;
 
-    const post = await prisma.blogPost.findUnique({
-      where: { slug },
-    });
+    const posts = await Database.find<BlogPost>('blogPosts');
+    const post = posts.find(p => p.slug === slug);
 
     if (!post) {
       throw new AppError('Blog post not found', 404);
     }
 
     // Increment views
-    await prisma.blogPost.update({
-      where: { id: post.id },
-      data: { views: post.views + 1 },
-    });
+    await Database.update<BlogPost>('blogPosts', post.id, { views: post.views + 1 });
 
     res.json({
       success: true,
@@ -63,9 +76,7 @@ export class BlogController {
   async getById(req: Request, res: Response) {
     const { id } = req.params;
 
-    const post = await prisma.blogPost.findUnique({
-      where: { id },
-    });
+    const post = await Database.findById<BlogPost>('blogPosts', id);
 
     if (!post) {
       throw new AppError('Blog post not found', 404);
@@ -81,13 +92,13 @@ export class BlogController {
     const { category } = req.params;
     const { published = 'true' } = req.query;
 
-    const posts = await prisma.blogPost.findMany({
-      where: {
-        category,
-        published: published === 'true',
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+    const posts = await Database.findWhere<BlogPost>(
+      'blogPosts',
+      p => p.category === category && (published === 'true' ? p.published : true)
+    );
+
+    // Sort by createdAt desc
+    posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     res.json({
       success: true,

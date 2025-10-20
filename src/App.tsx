@@ -5,6 +5,7 @@ import LoadingSplash from "./components/LoadingSplash";
 import Navigation from "./components/Navigation";
 import ScrollProgress from "./components/ScrollProgress";
 import Chatbot from "./components/Chatbot";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
@@ -34,15 +35,17 @@ function App() {
           <Navigation />
 
           <main id="main-content" className="pt-0" role="main">
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div></div>}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/experience" element={<ExperiencePage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-              </Routes>
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/projects" element={<ProjectsPage />} />
+                  <Route path="/experience" element={<ExperiencePage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
           </main>
 
           <Suspense fallback={null}>

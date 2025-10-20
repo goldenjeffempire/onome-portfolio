@@ -1,8 +1,24 @@
 import OpenAI from 'openai';
-import prisma from '../config/database';
+import { Database } from '../db/database';
 import env from '../config/env';
 import { logger } from '../utils/logger';
 import { AppError } from '../middleware/errorHandler';
+import { randomUUID } from 'crypto';
+
+interface ChatConversation {
+  id: string;
+  sessionId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ChatMessage {
+  id: string;
+  conversationId: string;
+  role: string;
+  content: string;
+  timestamp: string;
+}
 
 export class AIService {
   private openai: OpenAI | null = null;
@@ -11,6 +27,7 @@ export class AIService {
   constructor() {
     if (env.OPENAI_API_KEY) {
       try {
+        // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
         this.openai = new OpenAI({
           apiKey: env.OPENAI_API_KEY,
         });
@@ -28,34 +45,35 @@ export class AIService {
   async processMessage(message: string, sessionId?: string): Promise<any> {
     const session = sessionId || `session_${Date.now()}`;
 
-    // Save user message to database
-    let conversation = await prisma.chatConversation.findFirst({
-      where: { sessionId: session },
-      include: { messages: { orderBy: { timestamp: 'asc' } } },
-    });
+    // Get or create conversation
+    const conversations = await Database.find<ChatConversation>('chatConversations');
+    let conversation = conversations.find(c => c.sessionId === session);
 
     if (!conversation) {
-      conversation = await prisma.chatConversation.create({
-        data: {
-          sessionId: session,
-          messages: {
-            create: {
-              role: 'USER',
-              content: message,
-            },
-          },
-        },
-        include: { messages: true },
-      });
-    } else {
-      await prisma.chatMessage.create({
-        data: {
-          conversationId: conversation.id,
-          role: 'USER',
-          content: message,
-        },
-      });
+      conversation = {
+        id: randomUUID(),
+        sessionId: session,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      await Database.create('chatConversations', conversation);
     }
+
+    // Save user message
+    const userMessage: ChatMessage = {
+      id: randomUUID(),
+      conversationId: conversation.id,
+      role: 'USER',
+      content: message,
+      timestamp: new Date().toISOString(),
+    };
+    await Database.create('chatConversations', userMessage);
+
+    // Get conversation history
+    const allMessages = await Database.find<ChatMessage>('chatConversations');
+    const history = allMessages
+      .filter(m => m.conversationId === conversation.id)
+      .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 
     // Get AI response
     let aiResponse: string;
@@ -64,21 +82,22 @@ export class AIService {
       aiResponse = this.getFallbackResponse(message);
     } else {
       try {
-        aiResponse = await this.getOpenAIResponse(message, conversation.messages);
+        aiResponse = await this.getOpenAIResponse(message, history);
       } catch (error) {
         logger.error('OpenAI API error', { error });
         aiResponse = this.getFallbackResponse(message);
       }
     }
 
-    // Save AI response to database
-    await prisma.chatMessage.create({
-      data: {
-        conversationId: conversation.id,
-        role: 'ASSISTANT',
-        content: aiResponse,
-      },
-    });
+    // Save AI response
+    const assistantMessage: ChatMessage = {
+      id: randomUUID(),
+      conversationId: conversation.id,
+      role: 'ASSISTANT',
+      content: aiResponse,
+      timestamp: new Date().toISOString(),
+    };
+    await Database.create('chatConversations', assistantMessage);
 
     return {
       message: aiResponse,
@@ -86,7 +105,7 @@ export class AIService {
     };
   }
 
-  private async getOpenAIResponse(message: string, history: any[]): Promise<string> {
+  private async getOpenAIResponse(_message: string, history: ChatMessage[]): Promise<string> {
     if (!this.openai) {
       throw new AppError('OpenAI not initialized', 500);
     }
@@ -117,17 +136,11 @@ Provide helpful, accurate information about Jeffery's expertise and encourage us
       });
     }
 
-    // Add current message
-    messages.push({
-      role: 'user',
-      content: message,
-    });
-
+    // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
     const completion = await this.openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'gpt-5',
       messages,
-      max_tokens: 500,
-      temperature: 0.7,
+      max_completion_tokens: 500,
     });
 
     return completion.choices[0]?.message?.content || 'I apologize, but I could not generate a response. Please try again.';

@@ -1,12 +1,30 @@
 import { Router, Request, Response } from 'express';
 import { asyncHandler } from '../middleware/errorHandler';
-import prisma from '../config/database';
+import { Database } from '../db/database';
 
 const router = Router();
 
+interface Experience {
+  id: string;
+  company: string;
+  position: string;
+  location?: string;
+  startDate: string;
+  endDate?: string;
+  current: boolean;
+  description: string[];
+  tech: string[];
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 router.get('/', asyncHandler(async (_req: Request, res: Response) => {
-  const experiences = await prisma.experience.findMany({
-    orderBy: [{ order: 'asc' }, { startDate: 'desc' }],
+  const experiences = await Database.find<Experience>('experience');
+  
+  experiences.sort((a, b) => {
+    if (a.order !== b.order) return a.order - b.order;
+    return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
   });
 
   res.json({
@@ -16,9 +34,7 @@ router.get('/', asyncHandler(async (_req: Request, res: Response) => {
 }));
 
 router.get('/:id', asyncHandler(async (req: Request, res: Response) => {
-  const experience = await prisma.experience.findUnique({
-    where: { id: req.params.id },
-  });
+  const experience = await Database.findById<Experience>('experience', req.params.id);
 
   if (!experience) {
     return res.status(404).json({
